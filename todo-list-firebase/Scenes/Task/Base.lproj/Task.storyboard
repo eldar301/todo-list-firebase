@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Task View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="TaskViewController" customModule="todo_list_firebase" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter the title" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cpd-NQ-sYd" customClass="UpgradedTextField" customModule="todo_list_firebase" customModuleProvider="target">
+                                <rect key="frame" x="113.5" y="195.5" width="148" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20267016267123289" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="vhz-Gr-Zbr"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="23"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Txb-T5-9ML">
+                                <rect key="frame" x="60" y="243.5" width="255" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="EIv-uE-1fX"/>
+                                </constraints>
+                                <color key="textColor" red="0.61960784313725492" green="0.44705882352941173" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="otc-4S-Ehu">
+                                <rect key="frame" x="102" y="373.5" width="171" height="70"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                <state key="normal" title="ACTION">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ucR-8y-Dbs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.71732931780463915" blue="0.32992217652797085" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Txb-T5-9ML" secondAttribute="trailing" constant="60" id="BbC-we-Qpv"/>
+                            <constraint firstItem="Txb-T5-9ML" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="BrI-ON-2jv"/>
+                            <constraint firstItem="otc-4S-Ehu" firstAttribute="top" secondItem="Txb-T5-9ML" secondAttribute="bottom" constant="30" id="Huz-hd-CMr"/>
+                            <constraint firstItem="Txb-T5-9ML" firstAttribute="top" secondItem="Cpd-NQ-sYd" secondAttribute="bottom" constant="8" id="THN-p3-FKF"/>
+                            <constraint firstItem="otc-4S-Ehu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="g7Q-DX-P0q"/>
+                            <constraint firstItem="Txb-T5-9ML" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="jaL-gB-QPU"/>
+                            <constraint firstItem="Cpd-NQ-sYd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="n81-2r-4xg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="otc-4S-Ehu" id="3ZY-Qd-BwM"/>
+                        <outlet property="descriptionTextView" destination="Txb-T5-9ML" id="HHc-T5-pIb"/>
+                        <outlet property="descriptionTextViewHeightConstraint" destination="EIv-uE-1fX" id="aSL-C5-RaC"/>
+                        <outlet property="titleTextField" destination="Cpd-NQ-sYd" id="BZu-Od-G6p"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
