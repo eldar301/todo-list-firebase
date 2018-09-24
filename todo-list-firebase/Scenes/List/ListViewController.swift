@@ -14,7 +14,9 @@ class ListViewController: UICollectionViewController {
     
     fileprivate let interitemSpacing: CGFloat = 8.0
     
-    fileprivate var tasks: [Task] = []
+    fileprivate var hotTasks: [Task] = []
+    fileprivate var normalTasks: [Task] = []
+    fileprivate var completedTasks: [Task] = []
     
     var presenter: ListPresenter!
 
@@ -27,15 +29,40 @@ class ListViewController: UICollectionViewController {
         let insets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
         self.collectionView.contentInset = insets
     }
+    
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 4
+    }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tasks.count
+        if section == 0 {
+            return hotTasks.count
+        } else if section == 1 {
+            return normalTasks.count
+        } else if section == 2 {
+            return completedTasks.count
+        } else {
+            return 1
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
-        let task = tasks[indexPath.row]
+        var task: Task
+        if indexPath.section == 0 {
+            task = hotTasks[indexPath.row]
+        } else if indexPath.section == 1 {
+            task = normalTasks[indexPath.row]
+        } else if indexPath.section == 2 {
+            task = completedTasks[indexPath.row]
+        } else {
+            task = Task(id: "id",
+                        title: "title",
+                        description: "description",
+                        date: nil,
+                        done: false)
+        }
         
         let titleLabel = cell.viewWithTag(1) as! UILabel
         titleLabel.text = task.title
@@ -44,8 +71,19 @@ class ListViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let task = tasks[indexPath.row]
-        presenter.showTask(task: task)
+        if indexPath.section == 0 {
+            presenter.showTask(task: hotTasks[indexPath.row])
+        } else if indexPath.section == 1 {
+            presenter.showTask(task: normalTasks[indexPath.row])
+        } else if indexPath.section == 2 {
+            presenter.showTask(task: completedTasks[indexPath.row])
+        } else {
+            presenter.createTask()
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "reuseheader", for: indexPath)
     }
 
 }
@@ -70,9 +108,10 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension ListViewController: ListView {
-    
-    func update(withTasks tasks: [Task]) {
-        self.tasks = tasks
+    func update(withHotTasks hotTasks: [Task], withNormalTasks normalTasks: [Task], withCompletedTasks completedTasks: [Task]) {
+        self.hotTasks = hotTasks
+        self.normalTasks = normalTasks
+        self.completedTasks = completedTasks
         self.collectionView.reloadData()
     }
     

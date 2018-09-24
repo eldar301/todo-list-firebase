@@ -47,6 +47,13 @@
                                     <action selector="action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ucR-8y-Dbs"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cam-K7-nEl">
+                                <rect key="frame" x="319" y="28" width="48" height="30"/>
+                                <state key="normal" title="CLOSE"/>
+                                <connections>
+                                    <action selector="close:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZhH-8g-grn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.71732931780463915" blue="0.32992217652797085" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -54,6 +61,8 @@
                             <constraint firstItem="Txb-T5-9ML" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="BrI-ON-2jv"/>
                             <constraint firstItem="otc-4S-Ehu" firstAttribute="top" secondItem="Txb-T5-9ML" secondAttribute="bottom" constant="30" id="Huz-hd-CMr"/>
                             <constraint firstItem="Txb-T5-9ML" firstAttribute="top" secondItem="Cpd-NQ-sYd" secondAttribute="bottom" constant="8" id="THN-p3-FKF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Cam-K7-nEl" secondAttribute="trailing" constant="8" id="b2U-7r-Wdr"/>
+                            <constraint firstItem="Cam-K7-nEl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="fQa-a3-aVN"/>
                             <constraint firstItem="otc-4S-Ehu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="g7Q-DX-P0q"/>
                             <constraint firstItem="Txb-T5-9ML" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="jaL-gB-QPU"/>
                             <constraint firstItem="Cpd-NQ-sYd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="n81-2r-4xg"/>

@@ -33,10 +33,12 @@ class TaskPresenter {
     }
     
     init(router: Router) {
-        self.task = Task(title: "", description: nil, date: Date(), done: false)
+        self.task = Task(id: "", title: "", description: nil, date: Date(), done: false)
         self.router = router
         setupAsNew = true
     }
+    
+    fileprivate lazy var interactor: TaskInteractor = TaskInteractor()
     
     weak var view: TaskView? {
         didSet {
@@ -63,15 +65,23 @@ class TaskPresenter {
     }
     
     func create() {
+        assert(setupAsNew)
+        
         guard !task.title.isEmpty else {
             view?.error(error: .invalidTitle)
             return
         }
         
+        interactor.add(task: task)
+        
         router.dismiss()
     }
     
     func dismiss() {
+        if !setupAsNew {
+            interactor.edit(task: task)
+        }
+        
         router.dismiss()
     }
     

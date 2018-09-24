@@ -24,7 +24,13 @@ class ListInteractor {
     
     weak var output: ListInteractorOutput?
     
-    fileprivate let db = Firestore.firestore()
+    fileprivate lazy var db: Firestore = {
+        let db = Firestore.firestore()
+        let settings = db.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        db.settings = settings
+        return db
+    }()
     
     func startListening() -> Bool {
         guard let userID = Auth.auth().currentUser?.uid else {
@@ -37,18 +43,16 @@ class ListInteractor {
                 return
             }
             
-            let dateFormatter = DateFormatter()
-            
             let tasks = snapshot!.documents.map({ document -> Task in
+                let id = document.documentID
                 let data = document.data()
                 let title = data["title"] as! String
                 let description = data["description"] as? String
-                var date: Date?
-                if let dateString = data["date"] as? String {
-                    date = dateFormatter.date(from: dateString)
-                }
+                let date = (document.get("date") as? Timestamp)?.dateValue()
+                print(date)
                 let done = data["done"] as! Bool
-                return Task(title: title,
+                return Task(id: id,
+                            title: title,
                             description: description,
                             date: date,
                             done: done)

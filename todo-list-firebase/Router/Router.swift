@@ -31,7 +31,7 @@ class Router {
         let router = Router(viewController: authVC)
         let presenter = AuthPresenter(router: router)
         authVC.presenter = presenter
-        present(viewController: authVC)
+        present(viewController: authVC, modally: true)
     }
     
     func showListScene() {
@@ -40,7 +40,7 @@ class Router {
         let router = Router(viewController: listVC)
         let presenter = ListPresenter(router: router)
         listVC.presenter = presenter
-        present(viewController: navVC)
+        present(viewController: navVC, modally: true)
     }
     
     func showTaskScene(task: Task?) {
@@ -53,11 +53,11 @@ class Router {
             presenter = TaskPresenter(router: router)
         }
         taskVC.presenter = presenter
-        present(viewController: taskVC)
+        present(viewController: taskVC, modally: true)
     }
     
-    fileprivate func present(viewController: UIViewController) {
-        if let navVC = currentViewController?.navigationController {
+    fileprivate func present(viewController: UIViewController, modally: Bool) {
+        if !modally, let navVC = currentViewController?.navigationController {
             navVC.pushViewController(viewController, animated: true)
         } else {
             currentViewController?.present(viewController, animated: true)

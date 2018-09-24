@@ -38,7 +38,7 @@ class TaskViewController: UIViewController {
         self.view.addGestureRecognizer(tapGestureRecognizer)
         
         resetBackgrounds()
-        updateTextViewHeight()
+        updateDescriptionTextViewHeight()
     }
     
     @IBAction func action(_ sender: Any) {
@@ -46,7 +46,9 @@ class TaskViewController: UIViewController {
         descriptionTextView.resignFirstResponder()
         
         if actionButton.titleLabel?.text == "ADD" {
-            
+            presenter.set(title: titleTextField.text!)
+            presenter.set(description: descriptionTextView.textColor == .placeholderTextColor ? "" : descriptionTextView.text)
+            presenter.create()
         } else {
             if presenter.toggleDone() {
                 actionButton.setTitle("UNDONE", for: .normal)
@@ -54,6 +56,13 @@ class TaskViewController: UIViewController {
                 actionButton.setTitle("DONE", for: .normal)
             }
         }
+    }
+    
+    @IBAction func close(_ sender: Any) {
+        presenter.set(title: titleTextField.text!)
+        presenter.set(description: descriptionTextView.textColor == .placeholderTextColor ? "" : descriptionTextView.text)
+        
+        presenter.dismiss()
     }
     
     func resetBackgrounds() {
@@ -66,7 +75,7 @@ class TaskViewController: UIViewController {
         descriptionTextView.backgroundColor = .editBackgroundColor
     }
     
-    func updateTextViewHeight() {
+    func updateDescriptionTextViewHeight() {
         descriptionTextView.isScrollEnabled = true
         descriptionTextViewHeightConstraint.constant = descriptionTextView.contentSize.height
         descriptionTextView.isScrollEnabled = false
@@ -77,12 +86,19 @@ class TaskViewController: UIViewController {
 extension TaskViewController: TaskView {
     
     func setupNew() {
+        titleTextField.becomeFirstResponder()
         actionButton.setTitle("ADD", for: .normal)
     }
     
     func set(title: String, description: String?, done: Bool) {
         titleTextField.text = title
         descriptionTextView.text = description
+        if descriptionTextView.text.isEmpty {
+            descriptionTextView.text = "Description"
+            descriptionTextView.textColor = .placeholderTextColor
+        } else {
+            descriptionTextView.textColor = .textColor
+        }
         actionButton.setTitle(done ? "UNDONE" : "DONE", for: .normal)
     }
     
@@ -118,14 +134,14 @@ extension TaskViewController: UITextViewDelegate {
         
         textView.tintColor = self.view.backgroundColor
         
-        if textView.text == "Description" {
+        if textView.textColor == .placeholderTextColor {
             textView.textColor = .textColor
             textView.text = ""
         }
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        updateTextViewHeight()
+        updateDescriptionTextViewHeight()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {

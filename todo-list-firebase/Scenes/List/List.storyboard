@@ -18,13 +18,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tU9-EC-F9F">
                             <size key="itemSize" width="200" height="108"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="j67-tS-euK">
-                                <rect key="frame" x="0.0" y="0.0" width="164" height="92"/>
+                                <rect key="frame" x="0.0" y="50" width="164" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="164" height="92"/>
@@ -48,6 +48,11 @@
                                 <size key="customSize" width="164" height="92"/>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="reuseheader" id="hOd-vz-DUk">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <color key="backgroundColor" red="0.12613268350000001" green="1" blue="0.60923474479999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="aOq-uw-mji" id="aKj-8Z-0Kr"/>
                             <outlet property="delegate" destination="aOq-uw-mji" id="6CF-VZ-LEK"/>
