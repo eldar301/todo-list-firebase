@@ -36,6 +36,10 @@ class AuthPresenter {
         interactor.register(email: email, password: password)
     }
     
+    func skip() {
+        interactor.signInAnonymously()
+    }
+    
 }
 
 extension AuthPresenter: AuthInteractorOutput {
@@ -43,7 +47,7 @@ extension AuthPresenter: AuthInteractorOutput {
     func update(withResult result: Result<Void>) {
         switch result {
         case .success(()):
-            router.dismiss()
+            router.showListScene()
             
         case .error(let description):
             view?.update(withErrorDescription: description)

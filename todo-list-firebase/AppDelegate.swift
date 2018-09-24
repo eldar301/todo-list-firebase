@@ -14,9 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+    
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let rootVC = UIViewController()
+        window?.rootViewController = rootVC
+        window?.makeKeyAndVisible()
+        
+        let router = Router(viewController: rootVC)
+        router.showRootScene()
         
         return true
     }

@@ -15,9 +15,14 @@ class ListViewController: UICollectionViewController {
     fileprivate let interitemSpacing: CGFloat = 8.0
     
     fileprivate var tasks: [Task] = []
+    
+    var presenter: ListPresenter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        presenter.view = self
+        presenter.startListening()
 
         let insets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
         self.collectionView.contentInset = insets
@@ -37,6 +42,11 @@ class ListViewController: UICollectionViewController {
         
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let task = tasks[indexPath.row]
+        presenter.showTask(task: task)
+    }
 
 }
 
@@ -55,6 +65,15 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return interitemSpacing
+    }
+    
+}
+
+extension ListViewController: ListView {
+    
+    func update(withTasks tasks: [Task]) {
+        self.tasks = tasks
+        self.collectionView.reloadData()
     }
     
 }

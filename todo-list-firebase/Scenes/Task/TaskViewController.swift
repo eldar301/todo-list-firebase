@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class TaskViewController: UIViewController {
     
     @IBOutlet weak var titleTextField: UITextField!
@@ -19,8 +17,12 @@ class TaskViewController: UIViewController {
     
     @IBOutlet weak var actionButton: UIButton!
     
+    var presenter: TaskPresenter!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        presenter.view = self
         
         titleTextField.layer.cornerRadius = 5.0
         titleTextField.delegate = self
@@ -46,7 +48,11 @@ class TaskViewController: UIViewController {
         if actionButton.titleLabel?.text == "ADD" {
             
         } else {
-            
+            if presenter.toggleDone() {
+                actionButton.setTitle("UNDONE", for: .normal)
+            } else {
+                actionButton.setTitle("DONE", for: .normal)
+            }
         }
     }
     

@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7bb-il-1Yg">
-                                <rect key="frame" x="112.5" y="261.5" width="150" height="144"/>
+                                <rect key="frame" x="112.5" y="235" width="150" height="197"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fKD-sm-1XR">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
@@ -48,6 +48,18 @@
                                         <state key="normal" title="Register"/>
                                         <connections>
                                             <action selector="register:" destination="hWa-g5-3eZ" eventType="touchUpInside" id="SSO-7w-bKz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xBF-Ef-jFK">
+                                        <rect key="frame" x="0.0" y="152" width="150" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="cjj-FB-E45"/>
+                                        </constraints>
+                                        <state key="normal" title="Skip">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="skip:" destination="hWa-g5-3eZ" eventType="touchUpInside" id="tr0-Iu-Vf2"/>
                                         </connections>
                                     </button>
                                 </subviews>

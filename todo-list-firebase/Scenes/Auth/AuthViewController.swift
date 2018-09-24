@@ -14,12 +14,9 @@ class AuthViewController: UIViewController {
     
     @IBOutlet weak var passwordTextField: UITextField!
     
-    fileprivate var presenter: AuthPresenter!
+    var presenter: AuthPresenter!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-        presenter = AuthPresenter(router: Router(viewController: self))
         presenter.view = self
     }
     
@@ -29,6 +26,10 @@ class AuthViewController: UIViewController {
     
     @IBAction func register(_ sender: Any) {
         presenter.register(email: emailTextField.text!, password: passwordTextField.text!)
+    }
+    
+    @IBAction func skip(_ sender: Any) {
+        presenter.skip()
     }
     
 }

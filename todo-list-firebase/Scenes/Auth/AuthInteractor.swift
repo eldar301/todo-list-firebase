@@ -29,6 +29,12 @@ class AuthInteractor {
         }
     }
     
+    func signInAnonymously() {
+        Auth.auth().signInAnonymously { [weak self] result, error in
+            self?.handleResult(result: result, error: error)
+        }
+    }
+    
     fileprivate func handleResult(result: AuthDataResult?, error: Error?) {
         if let error = error {
             output?.update(withResult: .error(error.localizedDescription))
