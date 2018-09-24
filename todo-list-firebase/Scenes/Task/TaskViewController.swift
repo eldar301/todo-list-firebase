@@ -39,9 +39,15 @@ class TaskViewController: UIViewController {
         updateTextViewHeight()
     }
     
-    @IBAction func action(_ sender: Any) {        
+    @IBAction func action(_ sender: Any) {
         titleTextField.resignFirstResponder()
         descriptionTextView.resignFirstResponder()
+        
+        if actionButton.titleLabel?.text == "ADD" {
+            
+        } else {
+            
+        }
     }
     
     func resetBackgrounds() {
@@ -58,6 +64,27 @@ class TaskViewController: UIViewController {
         descriptionTextView.isScrollEnabled = true
         descriptionTextViewHeightConstraint.constant = descriptionTextView.contentSize.height
         descriptionTextView.isScrollEnabled = false
+    }
+    
+}
+
+extension TaskViewController: TaskView {
+    
+    func setupNew() {
+        actionButton.setTitle("ADD", for: .normal)
+    }
+    
+    func set(title: String, description: String?, done: Bool) {
+        titleTextField.text = title
+        descriptionTextView.text = description
+        actionButton.setTitle(done ? "UNDONE" : "DONE", for: .normal)
+    }
+    
+    func error(error: TaskError) {
+        switch error {
+        case .invalidTitle:
+            print("invalid title")
+        }
     }
     
 }
@@ -126,4 +153,3 @@ fileprivate extension UIColor {
     }
     
 }
-

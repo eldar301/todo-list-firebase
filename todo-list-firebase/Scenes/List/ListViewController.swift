@@ -12,34 +12,9 @@ class ListViewController: UICollectionViewController {
     
     fileprivate let reuseIdentifier = "Cell"
     
-    fileprivate let interitemSpacing: CGFloat = 16.0
+    fileprivate let interitemSpacing: CGFloat = 8.0
     
-    fileprivate var tasks: [Task] = [Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false),
-                                     Task(title: "Super mega title", description: "No description", done: false)]
+    fileprivate var tasks: [Task] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,10 +33,7 @@ class ListViewController: UICollectionViewController {
         let task = tasks[indexPath.row]
         
         let titleLabel = cell.viewWithTag(1) as! UILabel
-        let descriptionLabel = cell.viewWithTag(2) as! UILabel
-        
         titleLabel.text = task.title
-        descriptionLabel.text = task.description
         
         return cell
     }
@@ -73,11 +45,15 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let insets = collectionView.contentInset
         let width = (self.collectionView.bounds.width - insets.left - insets.right - interitemSpacing) / 2.0
-        let height: CGFloat = 60
+        let height: CGFloat = 120
         return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return interitemSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return interitemSpacing
     }
     

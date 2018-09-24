@@ -33,7 +33,7 @@ class TaskPresenter {
     }
     
     init(router: Router) {
-        self.task = Task(title: "", description: nil, done: false)
+        self.task = Task(title: "", description: nil, date: Date(), done: false)
         self.router = router
         setupAsNew = true
     }
@@ -49,10 +49,6 @@ class TaskPresenter {
     }
     
     func set(title: String) {
-        guard !title.isEmpty else {
-            view?.error(error: .invalidTitle)
-            return
-        }
         task.title = title
     }
     

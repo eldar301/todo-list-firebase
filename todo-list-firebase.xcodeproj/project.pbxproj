@@ -15,6 +15,13 @@
 		780AE906215655DF00F72F27 /* TaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780AE905215655DF00F72F27 /* TaskPresenter.swift */; };
 		780AE9092156563B00F72F27 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780AE9082156563B00F72F27 /* Task.swift */; };
 		780AE90C2156590500F72F27 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780AE90B2156590500F72F27 /* Router.swift */; };
+		780AE90E2156649100F72F27 /* ListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780AE90D2156649100F72F27 /* ListPresenter.swift */; };
+		784D081E2159005400DB1ACF /* ListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D081D2159005400DB1ACF /* ListInteractor.swift */; };
+		784D08212159074500DB1ACF /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 784D08202159074500DB1ACF /* Auth.storyboard */; };
+		784D082321590FC000DB1ACF /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D082221590FC000DB1ACF /* AuthViewController.swift */; };
+		784D08252159104000DB1ACF /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D08242159104000DB1ACF /* AuthInteractor.swift */; };
+		784D08292159138000DB1ACF /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D08282159138000DB1ACF /* AuthPresenter.swift */; };
+		784D082B2159164C00DB1ACF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 784D082A2159164B00DB1ACF /* GoogleService-Info.plist */; };
 		78DA1CA221553CC60067FFD6 /* UpgradedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DA1CA121553CC60067FFD6 /* UpgradedTextField.swift */; };
 		78DA1CA8215595F80067FFD6 /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78DA1CA7215595F80067FFD6 /* List.storyboard */; };
 		78DA1CAA215596E90067FFD6 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DA1CA9215596E90067FFD6 /* ListViewController.swift */; };
@@ -33,6 +40,13 @@
 		780AE905215655DF00F72F27 /* TaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPresenter.swift; sourceTree = "<group>"; };
 		780AE9082156563B00F72F27 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		780AE90B2156590500F72F27 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		780AE90D2156649100F72F27 /* ListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenter.swift; sourceTree = "<group>"; };
+		784D081D2159005400DB1ACF /* ListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInteractor.swift; sourceTree = "<group>"; };
+		784D08202159074500DB1ACF /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
+		784D082221590FC000DB1ACF /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		784D08242159104000DB1ACF /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
+		784D08282159138000DB1ACF /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		784D082A2159164B00DB1ACF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		78DA1CA121553CC60067FFD6 /* UpgradedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradedTextField.swift; sourceTree = "<group>"; };
 		78DA1CA7215595F80067FFD6 /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
 		78DA1CA9215596E90067FFD6 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +102,7 @@
 				78073E652154015C00E11249 /* AppDelegate.swift */,
 				78073E6C2154015E00E11249 /* Assets.xcassets */,
 				78073E6E2154015E00E11249 /* LaunchScreen.storyboard */,
+				784D082A2159164B00DB1ACF /* GoogleService-Info.plist */,
 				78073E712154015E00E11249 /* Info.plist */,
 			);
 			path = "todo-list-firebase";
@@ -109,9 +124,21 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		784D081F2159070100DB1ACF /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				784D08242159104000DB1ACF /* AuthInteractor.swift */,
+				784D08282159138000DB1ACF /* AuthPresenter.swift */,
+				784D082221590FC000DB1ACF /* AuthViewController.swift */,
+				784D08202159074500DB1ACF /* Auth.storyboard */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		78DA1CA3215595470067FFD6 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				784D081F2159070100DB1ACF /* Auth */,
 				78DA1CA6215595ED0067FFD6 /* List */,
 				78DA1CA42155954E0067FFD6 /* Task */,
 			);
@@ -139,6 +166,8 @@
 		78DA1CA6215595ED0067FFD6 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				784D081D2159005400DB1ACF /* ListInteractor.swift */,
+				780AE90D2156649100F72F27 /* ListPresenter.swift */,
 				78DA1CA9215596E90067FFD6 /* ListViewController.swift */,
 				78DA1CA7215595F80067FFD6 /* List.storyboard */,
 			);
@@ -215,7 +244,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				78073E702154015E00E11249 /* LaunchScreen.storyboard in Resources */,
+				784D082B2159164C00DB1ACF /* GoogleService-Info.plist in Resources */,
 				78073E6D2154015E00E11249 /* Assets.xcassets in Resources */,
+				784D08212159074500DB1ACF /* Auth.storyboard in Resources */,
 				78073E6B2154015C00E11249 /* Task.storyboard in Resources */,
 				78DA1CA8215595F80067FFD6 /* List.storyboard in Resources */,
 			);
@@ -287,6 +318,11 @@
 			files = (
 				78DA1CA221553CC60067FFD6 /* UpgradedTextField.swift in Sources */,
 				78073E682154015C00E11249 /* TaskViewController.swift in Sources */,
+				784D082321590FC000DB1ACF /* AuthViewController.swift in Sources */,
+				784D08252159104000DB1ACF /* AuthInteractor.swift in Sources */,
+				784D08292159138000DB1ACF /* AuthPresenter.swift in Sources */,
+				780AE90E2156649100F72F27 /* ListPresenter.swift in Sources */,
+				784D081E2159005400DB1ACF /* ListInteractor.swift in Sources */,
 				78DA1CAA215596E90067FFD6 /* ListViewController.swift in Sources */,
 				780AE90C2156590500F72F27 /* Router.swift in Sources */,
 				780AE906215655DF00F72F27 /* TaskPresenter.swift in Sources */,
