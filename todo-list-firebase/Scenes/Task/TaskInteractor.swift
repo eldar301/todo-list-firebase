@@ -36,15 +36,10 @@ class TaskInteractor {
         db.collection("users").document(userID).collection("tasks").document(task.id).updateData(dataFrom(task: task))
     }
     
-    fileprivate func dataFrom(task: Task) -> [String: Any] {
-        var dateString = ""
-        if let date = task.date {
-            dateString = "\(date.timeIntervalSince1970)"
-        }
-        
+    fileprivate func dataFrom(task: Task) -> [String: Any] {      
         return ["title": task.title,
                 "description": task.description ?? "",
-                "date": dateString,
+                "date": task.date,
                 "done": task.done]
     }
     

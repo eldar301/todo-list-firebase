@@ -33,7 +33,7 @@ class TaskPresenter {
     }
     
     init(router: Router) {
-        self.task = Task(id: "", title: "", description: nil, date: Date(), done: false)
+        self.task = Task(id: "", title: "", description: nil, date: nil, done: false)
         self.router = router
         setupAsNew = true
     }

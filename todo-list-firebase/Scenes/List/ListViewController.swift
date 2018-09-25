@@ -49,23 +49,26 @@ class ListViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
-        var task: Task
-        if indexPath.section == 0 {
-            task = hotTasks[indexPath.row]
-        } else if indexPath.section == 1 {
-            task = normalTasks[indexPath.row]
-        } else if indexPath.section == 2 {
-            task = completedTasks[indexPath.row]
+        if indexPath.section < 3 {
+            var task: Task
+            if indexPath.section == 0 {
+                task = hotTasks[indexPath.row]
+                cell.backgroundColor = .red
+            } else if indexPath.section == 1 {
+                task = normalTasks[indexPath.row]
+                cell.backgroundColor = .yellow
+            } else {
+                task = completedTasks[indexPath.row]
+                cell.backgroundColor = .green
+            }
+            
+            let titleLabel = cell.viewWithTag(1) as! UILabel
+            titleLabel.text = task.title
         } else {
-            task = Task(id: "id",
-                        title: "title",
-                        description: "description",
-                        date: nil,
-                        done: false)
+            cell.backgroundColor = .yellow
+            let addLabel = cell.viewWithTag(1) as! UILabel
+            addLabel.text = "+"
         }
-        
-        let titleLabel = cell.viewWithTag(1) as! UILabel
-        titleLabel.text = task.title
         
         return cell
     }

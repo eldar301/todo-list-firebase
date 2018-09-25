@@ -49,7 +49,6 @@ class ListInteractor {
                 let title = data["title"] as! String
                 let description = data["description"] as? String
                 let date = (document.get("date") as? Timestamp)?.dateValue()
-                print(date)
                 let done = data["done"] as! Bool
                 return Task(id: id,
                             title: title,

@@ -30,6 +30,8 @@ class TaskViewController: UIViewController {
         descriptionTextView.isScrollEnabled = false
         descriptionTextView.layer.cornerRadius = 5.0
         descriptionTextView.delegate = self
+        descriptionTextView.text = "Description"
+        descriptionTextView.textColor = .placeholderTextColor
         
         let padding = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
         descriptionTextView.textContainerInset = padding
