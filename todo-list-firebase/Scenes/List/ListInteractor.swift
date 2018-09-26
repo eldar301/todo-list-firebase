@@ -49,12 +49,11 @@ class ListInteractor {
                 let title = data["title"] as! String
                 let description = data["description"] as? String
                 let date = (document.get("date") as? Timestamp)?.dateValue()
-                let done = data["done"] as! Bool
                 return Task(id: id,
                             title: title,
                             description: description,
                             date: date,
-                            done: done)
+                            done: false)
             })
             
             self?.output?.update(withResult: .success(tasks))

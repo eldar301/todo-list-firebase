@@ -47,7 +47,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="otc-4S-Ehu">
-                                <rect key="frame" x="102" y="390.5" width="171" height="70"/>
+                                <rect key="frame" x="102" y="394.5" width="171" height="70"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="48"/>
                                 <state key="normal" title="ACTION">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -56,29 +56,24 @@
                                     <action selector="action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ucR-8y-Dbs"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9O-yU-mnb" customClass="DatePickerTextField" customModule="todo_list_firebase" customModuleProvider="target">
-                                <rect key="frame" x="67.5" y="351.5" width="240" height="31"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uft-fg-xei" customClass="DatePickerTextField" customModule="todo_list_firebase" customModuleProvider="target">
+                                <rect key="frame" x="67.5" y="351.5" width="240" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="PqF-JL-TKH"/>
-                                    <constraint firstAttribute="width" constant="240" id="QDB-Wj-i4e"/>
+                                    <constraint firstAttribute="height" constant="35" id="b91-sz-CPk"/>
+                                    <constraint firstAttribute="width" constant="240" id="m8Q-d6-dA4"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="pidor">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.71732931780463915" blue="0.32992217652797085" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="w9O-yU-mnb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5pq-za-KYO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Txb-T5-9ML" secondAttribute="trailing" constant="60" id="BbC-we-Qpv"/>
                             <constraint firstItem="Txb-T5-9ML" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="BrI-ON-2jv"/>
+                            <constraint firstItem="otc-4S-Ehu" firstAttribute="top" secondItem="uft-fg-xei" secondAttribute="bottom" constant="8" id="RO7-vm-Qar"/>
+                            <constraint firstItem="uft-fg-xei" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Se4-jA-VAX"/>
                             <constraint firstItem="Txb-T5-9ML" firstAttribute="top" secondItem="Cpd-NQ-sYd" secondAttribute="bottom" constant="8" id="THN-p3-FKF"/>
-                            <constraint firstItem="otc-4S-Ehu" firstAttribute="top" secondItem="w9O-yU-mnb" secondAttribute="bottom" constant="8" id="VEe-jf-dwY"/>
-                            <constraint firstItem="w9O-yU-mnb" firstAttribute="top" secondItem="Txb-T5-9ML" secondAttribute="bottom" constant="8" id="XXI-oX-YWM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Cam-K7-nEl" secondAttribute="trailing" constant="8" id="b2U-7r-Wdr"/>
+                            <constraint firstItem="uft-fg-xei" firstAttribute="top" secondItem="Txb-T5-9ML" secondAttribute="bottom" constant="8" id="cZ5-5n-lRK"/>
                             <constraint firstItem="Cam-K7-nEl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="fQa-a3-aVN"/>
                             <constraint firstItem="otc-4S-Ehu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="g7Q-DX-P0q"/>
                             <constraint firstItem="Txb-T5-9ML" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="jaL-gB-QPU"/>
@@ -88,7 +83,7 @@
                     </view>
                     <connections>
                         <outlet property="actionButton" destination="otc-4S-Ehu" id="3ZY-Qd-BwM"/>
-                        <outlet property="deadlinePicker" destination="w9O-yU-mnb" id="dQN-i3-2pw"/>
+                        <outlet property="deadlinePicker" destination="uft-fg-xei" id="UoB-Jj-Biv"/>
                         <outlet property="descriptionTextView" destination="Txb-T5-9ML" id="HHc-T5-pIb"/>
                         <outlet property="descriptionTextViewHeightConstraint" destination="EIv-uE-1fX" id="aSL-C5-RaC"/>
                         <outlet property="titleTextField" destination="Cpd-NQ-sYd" id="BZu-Od-G6p"/>

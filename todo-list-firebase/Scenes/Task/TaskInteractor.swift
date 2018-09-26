@@ -25,7 +25,10 @@ class TaskInteractor {
             return
         }
         
-        db.collection("users").document(userID).collection("tasks").addDocument(data: dataFrom(task: task))
+        db.collection("users")
+            .document(userID)
+            .collection("tasks")
+            .addDocument(data: dataFrom(task: task).filter({ $0.value != nil }) as [String : Any])
     }
     
     func edit(task: Task) {
@@ -33,14 +36,19 @@ class TaskInteractor {
             return
         }
         
-        db.collection("users").document(userID).collection("tasks").document(task.id).updateData(dataFrom(task: task))
+        let documentReference = db.collection("users").document(userID).collection("tasks").document(task.id)
+        
+        if task.done {
+            documentReference.delete()
+        } else {
+            documentReference.updateData(dataFrom(task: task).mapValues({ ($0 == nil) ? FieldValue.delete() : $0 }) as [AnyHashable : Any])
+        }
     }
     
-    fileprivate func dataFrom(task: Task) -> [String: Any] {      
+    fileprivate func dataFrom(task: Task) -> [String: Any?] {
         return ["title": task.title,
-                "description": task.description ?? "",
-                "date": task.date,
-                "done": task.done]
+                "description": task.description,
+                "date": task.date]
     }
     
 }
