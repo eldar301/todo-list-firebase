@@ -15,6 +15,8 @@ class TaskViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var descriptionTextViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var deadlinePicker: DatePickerTextField!
+    
     @IBOutlet weak var actionButton: UIButton!
     
     var presenter: TaskPresenter!
@@ -32,9 +34,15 @@ class TaskViewController: UIViewController {
         descriptionTextView.delegate = self
         descriptionTextView.text = "Description"
         descriptionTextView.textColor = .placeholderTextColor
-        
         let padding = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
         descriptionTextView.textContainerInset = padding
+        
+        deadlinePicker.layer.cornerRadius = 5.0
+        deadlinePicker.delegate = self
+        deadlinePicker.textColor = .textColor
+        deadlinePicker.placeholder = "Pick deadline"
+        deadlinePicker.textAlignment = .center
+        deadlinePicker.clearButtonMode = .always
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))
         self.view.addGestureRecognizer(tapGestureRecognizer)
@@ -70,11 +78,13 @@ class TaskViewController: UIViewController {
     func resetBackgrounds() {
         titleTextField.backgroundColor = .clear
         descriptionTextView.backgroundColor = .clear
+        deadlinePicker.backgroundColor = .clear
     }
     
     func setBackgrounds() {
         titleTextField.backgroundColor = .editBackgroundColor
         descriptionTextView.backgroundColor = .editBackgroundColor
+        deadlinePicker.backgroundColor = .editBackgroundColor
     }
     
     func updateDescriptionTextViewHeight() {
@@ -119,6 +129,18 @@ extension TaskViewController: UITextFieldDelegate {
         setBackgrounds()
         
         textField.tintColor = self.view.backgroundColor
+        
+        if textField === deadlinePicker, deadlinePicker.date == nil {
+            deadlinePicker.date = Date()
+        }
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        if textField === deadlinePicker {
+            deadlinePicker.date = nil
+        }
+        
+        return false
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

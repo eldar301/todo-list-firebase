@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C85C9C4215BA52200417F81 /* DatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C85C9C3215BA52200417F81 /* DatePickerTextField.swift */; };
 		78073E662154015C00E11249 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78073E652154015C00E11249 /* AppDelegate.swift */; };
 		78073E682154015C00E11249 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78073E672154015C00E11249 /* TaskViewController.swift */; };
 		78073E6B2154015C00E11249 /* Task.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78073E692154015C00E11249 /* Task.storyboard */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		109E02471BEA6E80221B0983 /* Pods-todo-list-firebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-todo-list-firebase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-todo-list-firebase/Pods-todo-list-firebase.debug.xcconfig"; sourceTree = "<group>"; };
+		2C85C9C3215BA52200417F81 /* DatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTextField.swift; sourceTree = "<group>"; };
 		78073E622154015C00E11249 /* todo-list-firebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "todo-list-firebase.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78073E652154015C00E11249 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78073E672154015C00E11249 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				780AE905215655DF00F72F27 /* TaskPresenter.swift */,
 				78073E672154015C00E11249 /* TaskViewController.swift */,
 				78073E692154015C00E11249 /* Task.storyboard */,
+				2C85C9C3215BA52200417F81 /* DatePickerTextField.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
@@ -283,6 +287,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
@@ -330,6 +335,7 @@
 				78DA1CAA215596E90067FFD6 /* ListViewController.swift in Sources */,
 				780AE90C2156590500F72F27 /* Router.swift in Sources */,
 				780AE906215655DF00F72F27 /* TaskPresenter.swift in Sources */,
+				2C85C9C4215BA52200417F81 /* DatePickerTextField.swift in Sources */,
 				780AE9092156563B00F72F27 /* Task.swift in Sources */,
 				78073E662154015C00E11249 /* AppDelegate.swift in Sources */,
 			);
