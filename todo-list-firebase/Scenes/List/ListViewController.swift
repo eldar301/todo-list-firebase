@@ -16,7 +16,6 @@ class ListViewController: UICollectionViewController {
     
     fileprivate var hotTasks: [Task] = []
     fileprivate var normalTasks: [Task] = []
-    fileprivate var completedTasks: [Task] = []
     
     var presenter: ListPresenter!
 
@@ -31,7 +30,7 @@ class ListViewController: UICollectionViewController {
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
+        return 3
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -39,8 +38,6 @@ class ListViewController: UICollectionViewController {
             return hotTasks.count
         } else if section == 1 {
             return normalTasks.count
-        } else if section == 2 {
-            return completedTasks.count
         } else {
             return 1
         }
@@ -49,17 +46,14 @@ class ListViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
-        if indexPath.section < 3 {
+        if indexPath.section < 2 {
             var task: Task
             if indexPath.section == 0 {
                 task = hotTasks[indexPath.row]
                 cell.backgroundColor = .red
-            } else if indexPath.section == 1 {
+            } else {
                 task = normalTasks[indexPath.row]
                 cell.backgroundColor = .yellow
-            } else {
-                task = completedTasks[indexPath.row]
-                cell.backgroundColor = .green
             }
             
             let titleLabel = cell.viewWithTag(1) as! UILabel
@@ -78,8 +72,6 @@ class ListViewController: UICollectionViewController {
             presenter.showTask(task: hotTasks[indexPath.row])
         } else if indexPath.section == 1 {
             presenter.showTask(task: normalTasks[indexPath.row])
-        } else if indexPath.section == 2 {
-            presenter.showTask(task: completedTasks[indexPath.row])
         } else {
             presenter.createTask()
         }
@@ -111,10 +103,9 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension ListViewController: ListView {
-    func update(withHotTasks hotTasks: [Task], withNormalTasks normalTasks: [Task], withCompletedTasks completedTasks: [Task]) {
+    func update(withHotTasks hotTasks: [Task], withNormalTasks normalTasks: [Task]) {
         self.hotTasks = hotTasks
         self.normalTasks = normalTasks
-        self.completedTasks = completedTasks
         self.collectionView.reloadData()
     }
     

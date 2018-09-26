@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ListView: class {
-    func update(withHotTasks: [Task], withNormalTasks: [Task], withCompletedTasks: [Task])
+    func update(withHotTasks: [Task], withNormalTasks: [Task])
 }
 
 class ListPresenter {
@@ -49,14 +49,8 @@ extension ListPresenter: ListInteractorOutput {
         case .success(let tasks):
             var hotTasks: [Task] = []
             var normalTasks: [Task] = []
-            var completedTasks: [Task] = []
             
             for task in tasks {
-                if task.done {
-                    completedTasks.append(task)
-                    continue
-                }
-                
                 if let date = task.date, Calendar.current.isDateInToday(date) || date.timeIntervalSinceNow < 0 {
                     hotTasks.append(task)
                 } else {
@@ -64,7 +58,7 @@ extension ListPresenter: ListInteractorOutput {
                 }
             }
             
-            view?.update(withHotTasks: hotTasks, withNormalTasks: normalTasks, withCompletedTasks: completedTasks)
+            view?.update(withHotTasks: hotTasks, withNormalTasks: normalTasks)
             
         case .error(let description):
             print(description)

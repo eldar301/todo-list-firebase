@@ -156,7 +156,6 @@
 				780AE905215655DF00F72F27 /* TaskPresenter.swift */,
 				78073E672154015C00E11249 /* TaskViewController.swift */,
 				78073E692154015C00E11249 /* Task.storyboard */,
-				2C85C9C3215BA52200417F81 /* DatePickerTextField.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -165,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				78DA1CA121553CC60067FFD6 /* UpgradedTextField.swift */,
+				2C85C9C3215BA52200417F81 /* DatePickerTextField.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
