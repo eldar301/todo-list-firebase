@@ -57,7 +57,7 @@ extension ListPresenter: ListInteractorOutput {
                     continue
                 }
                 
-                if let date = task.date, Calendar.current.isDateInToday(date) {
+                if let date = task.date, Calendar.current.isDateInToday(date) || date.timeIntervalSinceNow < 0 {
                     hotTasks.append(task)
                 } else {
                     normalTasks.append(task)

@@ -32,8 +32,6 @@ class TaskViewController: UIViewController {
         descriptionTextView.isScrollEnabled = false
         descriptionTextView.layer.cornerRadius = 5.0
         descriptionTextView.delegate = self
-        descriptionTextView.text = "Description"
-        descriptionTextView.textColor = .placeholderTextColor
         let padding = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
         descriptionTextView.textContainerInset = padding
         
@@ -58,6 +56,7 @@ class TaskViewController: UIViewController {
         if actionButton.titleLabel?.text == "ADD" {
             presenter.set(title: titleTextField.text!)
             presenter.set(description: descriptionTextView.textColor == .placeholderTextColor ? "" : descriptionTextView.text)
+            presenter.set(deadline: deadlinePicker.date)
             presenter.create()
         } else {
             if presenter.toggleDone() {
@@ -71,6 +70,7 @@ class TaskViewController: UIViewController {
     @IBAction func close(_ sender: Any) {
         presenter.set(title: titleTextField.text!)
         presenter.set(description: descriptionTextView.textColor == .placeholderTextColor ? "" : descriptionTextView.text)
+        presenter.set(deadline: deadlinePicker.date)
         
         presenter.dismiss()
     }
@@ -102,15 +102,16 @@ extension TaskViewController: TaskView {
         actionButton.setTitle("ADD", for: .normal)
     }
     
-    func set(title: String, description: String?, done: Bool) {
+    func set(title: String, description: String?, deadline: Date?, done: Bool) {
         titleTextField.text = title
-        descriptionTextView.text = description
-        if descriptionTextView.text.isEmpty {
+        if description?.isEmpty ?? true {
             descriptionTextView.text = "Description"
             descriptionTextView.textColor = .placeholderTextColor
         } else {
+            descriptionTextView.text = description
             descriptionTextView.textColor = .textColor
         }
+        deadlinePicker.date = deadline
         actionButton.setTitle(done ? "UNDONE" : "DONE", for: .normal)
     }
     

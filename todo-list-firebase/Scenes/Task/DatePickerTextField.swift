@@ -18,12 +18,6 @@ class DatePickerTextField: UpgradedTextField {
         return dateFormatter
     }()
     
-    override var text: String? {
-        didSet {
-            print("set")
-        }
-    }
-    
     var date: Date? {
         didSet {
             if let date = date {
@@ -55,10 +49,6 @@ class DatePickerTextField: UpgradedTextField {
     @objc func datePicked(datePicker: UIDatePicker) {
         date = datePicker.date
     }
-    
-//    override func selectionRects(for range: UITextRange) -> [Any] {
-//        return []
-//    }
     
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         return false

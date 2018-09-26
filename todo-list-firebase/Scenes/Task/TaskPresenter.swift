@@ -14,7 +14,7 @@ enum TaskError {
 
 protocol TaskView: class {
     func setupNew()
-    func set(title: String, description: String?, done: Bool)
+    func set(title: String, description: String?, deadline: Date?, done: Bool)
     func error(error: TaskError)
 }
 
@@ -45,7 +45,7 @@ class TaskPresenter {
             if setupAsNew {
                 view?.setupNew()
             } else {
-                view?.set(title: task.title, description: task.description, done: task.done)
+                view?.set(title: task.title, description: task.description, deadline: task.date, done: task.done)
             }
         }
     }
@@ -56,6 +56,10 @@ class TaskPresenter {
     
     func set(description: String?) {
         task.description = description
+    }
+    
+    func set(deadline: Date?) {
+        task.date = deadline
     }
     
     func toggleDone() -> Bool {
