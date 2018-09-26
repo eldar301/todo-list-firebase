@@ -21,8 +21,12 @@ class TaskViewController: UIViewController {
     
     var presenter: TaskPresenter!
     
+    fileprivate var maxDescriptionTextViewHeight: CGFloat!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        maxDescriptionTextViewHeight = self.view.bounds.height * 3 / 8
         
         presenter.view = self
         
@@ -46,7 +50,7 @@ class TaskViewController: UIViewController {
         self.view.addGestureRecognizer(tapGestureRecognizer)
         
         resetBackgrounds()
-        updateDescriptionTextViewHeight()
+        updateDescriptionTextView()
     }
     
     @IBAction func action(_ sender: Any) {
@@ -55,7 +59,7 @@ class TaskViewController: UIViewController {
         
         if actionButton.titleLabel?.text == "ADD" {
             presenter.set(title: titleTextField.text!)
-            presenter.set(description: descriptionTextView.textColor == .placeholderTextColor ? "" : descriptionTextView.text)
+            presenter.set(description: descriptionTextView.textColor == .placeholderTextColor ? nil : descriptionTextView.text)
             presenter.set(deadline: deadlinePicker.date)
             presenter.create()
         } else {
@@ -69,7 +73,7 @@ class TaskViewController: UIViewController {
     
     @IBAction func close(_ sender: Any) {
         presenter.set(title: titleTextField.text!)
-        presenter.set(description: descriptionTextView.textColor == .placeholderTextColor ? "" : descriptionTextView.text)
+        presenter.set(description: descriptionTextView.textColor == .placeholderTextColor ? nil : descriptionTextView.text)
         presenter.set(deadline: deadlinePicker.date)
         
         presenter.dismiss()
@@ -87,10 +91,15 @@ class TaskViewController: UIViewController {
         deadlinePicker.backgroundColor = .editBackgroundColor
     }
     
-    func updateDescriptionTextViewHeight() {
+    func updateDescriptionTextView() {
         descriptionTextView.isScrollEnabled = true
-        descriptionTextViewHeightConstraint.constant = descriptionTextView.contentSize.height
-        descriptionTextView.isScrollEnabled = false
+        let desiredHeight = descriptionTextView.contentSize.height
+        if desiredHeight > maxDescriptionTextViewHeight {
+            descriptionTextViewHeightConstraint.constant = maxDescriptionTextViewHeight
+        } else {
+            descriptionTextViewHeightConstraint.constant = desiredHeight
+            descriptionTextView.isScrollEnabled = false
+        }
     }
     
 }
@@ -99,6 +108,8 @@ extension TaskViewController: TaskView {
     
     func setupNew() {
         titleTextField.becomeFirstResponder()
+        descriptionTextView.text = "Description"
+        descriptionTextView.textColor = .placeholderTextColor
         actionButton.setTitle("ADD", for: .normal)
     }
     
@@ -166,7 +177,7 @@ extension TaskViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        updateDescriptionTextViewHeight()
+        updateDescriptionTextView()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {

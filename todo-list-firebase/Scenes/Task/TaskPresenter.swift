@@ -82,6 +82,11 @@ class TaskPresenter {
     }
     
     func dismiss() {
+        if !setupAsNew && task.title.isEmpty {
+            view?.error(error: .invalidTitle)
+            return
+        }
+        
         if !setupAsNew {
             interactor.edit(task: task)
         }
