@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@IBDesignable class DatePickerTextField: UpgradedTextField {
+class DatePickerTextField: UpgradedTextField {
     
     fileprivate lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
