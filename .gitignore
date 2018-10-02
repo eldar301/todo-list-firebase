@@ -1,9 +1,5 @@
 # Created by https://www.gitignore.io/api/xcode
 
-#Cocoapods
-Pods
-Podfile.lock
-
 ### Xcode ###
 # Xcode
 #
