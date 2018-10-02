@@ -2,7 +2,9 @@
 
 #Cocoapods
 Pods
-Podfile.lock
+
+#Firebase
+GoogleService-Info.plist
 
 ### Xcode ###
 # Xcode
