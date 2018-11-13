@@ -15,3 +15,11 @@ struct Task {
     var date: Date?
     var done: Bool
 }
+
+extension Task: Equatable {
+    
+    static func ==(lhs: Task, rhs: Task) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+}

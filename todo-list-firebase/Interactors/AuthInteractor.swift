@@ -41,7 +41,7 @@ class AuthInteractor {
             return
         }
         
-        output?.update(withResult: .success(()))
+        output?.update(withResult: .success)
     }
     
 }

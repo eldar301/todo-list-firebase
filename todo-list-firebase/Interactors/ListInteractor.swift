@@ -11,20 +11,28 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
-enum Result<T> {
-    case success(T)
-    case error(String)
+enum TaskStatus {
+    case added(Task)
+    case modified(Task)
+    case removed(Task)
 }
 
 protocol ListInteractorOutput: class {
-    func update(withResult result: Result<[Task]>)
+    func update(withResult result: Result<[TaskStatus]>)
 }
 
-class ListInteractor {
+protocol ListInteractor {
+    
+    var output: ListInteractorOutput? { get set }
+    
+    func startListening() -> Bool    
+}
+
+class ListInteractorDefault: ListInteractor {
     
     weak var output: ListInteractorOutput?
     
-    fileprivate lazy var db: Firestore = {
+    private lazy var db: Firestore = {
         let db = Firestore.firestore()
         let settings = db.settings
         settings.areTimestampsInSnapshotsEnabled = true
@@ -43,18 +51,34 @@ class ListInteractor {
                 return
             }
             
-            let tasks = snapshot!.documents.map({ document -> Task in
-                let id = document.documentID
+            var tasks: [TaskStatus] = []
+            
+            for change in snapshot!.documentChanges {
+                let document = change.document
                 let data = document.data()
+                
+                let id = document.documentID
                 let title = data["title"] as! String
                 let description = data["description"] as? String
                 let date = (document.get("date") as? Timestamp)?.dateValue()
-                return Task(id: id,
-                            title: title,
-                            description: description,
-                            date: date,
-                            done: false)
-            })
+                let task = Task(id: id,
+                                title: title,
+                                description: description,
+                                date: date,
+                                done: false)
+                
+                switch change.type {
+                case .added:
+                    tasks.append(.added(task))
+                    
+                case .modified:
+                    tasks.append(.modified(task))
+                    
+                case .removed:
+                    tasks.append(.removed(task))
+                    
+                }
+            }
             
             self?.output?.update(withResult: .success(tasks))
         }

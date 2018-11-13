@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 import Firebase
 
 @UIApplicationMain
@@ -24,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let router = Router(viewController: rootVC)
         router.showRootScene()
+        
+        UNUserNotificationCenter.current().delegate = self
         
         return true
     }
@@ -49,7 +52,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+}
 
-
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let categoryIdentifier = response.notification.request.content.categoryIdentifier
+        switch categoryIdentifier {
+        case "task-deadline":
+            switch response.actionIdentifier {
+            case "mark-as-done":
+                let taskInteractor = TaskInteractor()
+                let task = Task(id: response.notification.request.identifier,
+                                title: "",
+                                description: "",
+                                date: nil,
+                                done: true)
+                taskInteractor.edit(task: task)
+                
+            case "remind-later":
+                let localNotificationsInteractor = LocalNotificationsInteractorDefault()
+                // TODO
+            default:
+                break
+            }
+        default:
+            break
+        }
+        
+        completionHandler()
+    }
+    
 }
 

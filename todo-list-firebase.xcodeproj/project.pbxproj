@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C14985F217C659000E9F63E /* LocalNotificationsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C14985E217C659000E9F63E /* LocalNotificationsInteractor.swift */; };
+		2C14D906219B62A90024D797 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C14D905219B62A90024D797 /* Result.swift */; };
 		2C85C9C4215BA52200417F81 /* DatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C85C9C3215BA52200417F81 /* DatePickerTextField.swift */; };
 		78073E662154015C00E11249 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78073E652154015C00E11249 /* AppDelegate.swift */; };
 		78073E682154015C00E11249 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78073E672154015C00E11249 /* TaskViewController.swift */; };
@@ -32,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		109E02471BEA6E80221B0983 /* Pods-todo-list-firebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-todo-list-firebase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-todo-list-firebase/Pods-todo-list-firebase.debug.xcconfig"; sourceTree = "<group>"; };
+		2C14985E217C659000E9F63E /* LocalNotificationsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsInteractor.swift; sourceTree = "<group>"; };
+		2C14D905219B62A90024D797 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		2C85C9C3215BA52200417F81 /* DatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTextField.swift; sourceTree = "<group>"; };
 		78073E622154015C00E11249 /* todo-list-firebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "todo-list-firebase.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78073E652154015C00E11249 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +82,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2C149860217C65CC00E9F63E /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				784D08242159104000DB1ACF /* AuthInteractor.swift */,
+				784D081D2159005400DB1ACF /* ListInteractor.swift */,
+				2C14985E217C659000E9F63E /* LocalNotificationsInteractor.swift */,
+				784D082C215963B900DB1ACF /* TaskInteractor.swift */,
+			);
+			path = Interactors;
+			sourceTree = "<group>";
+		};
 		78073E592154015C00E11249 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +114,7 @@
 		78073E642154015C00E11249 /* todo-list-firebase */ = {
 			isa = PBXGroup;
 			children = (
+				2C149860217C65CC00E9F63E /* Interactors */,
 				780AE90A215658FD00F72F27 /* Router */,
 				780AE9072156563000F72F27 /* Model */,
 				78DA1CA5215595770067FFD6 /* Custom Views */,
@@ -108,6 +124,7 @@
 				78073E6E2154015E00E11249 /* LaunchScreen.storyboard */,
 				784D082A2159164B00DB1ACF /* GoogleService-Info.plist */,
 				78073E712154015E00E11249 /* Info.plist */,
+				2C14D905219B62A90024D797 /* Result.swift */,
 			);
 			path = "todo-list-firebase";
 			sourceTree = "<group>";
@@ -131,7 +148,6 @@
 		784D081F2159070100DB1ACF /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				784D08242159104000DB1ACF /* AuthInteractor.swift */,
 				784D08282159138000DB1ACF /* AuthPresenter.swift */,
 				784D082221590FC000DB1ACF /* AuthViewController.swift */,
 				784D08202159074500DB1ACF /* Auth.storyboard */,
@@ -152,7 +168,6 @@
 		78DA1CA42155954E0067FFD6 /* Task */ = {
 			isa = PBXGroup;
 			children = (
-				784D082C215963B900DB1ACF /* TaskInteractor.swift */,
 				780AE905215655DF00F72F27 /* TaskPresenter.swift */,
 				78073E672154015C00E11249 /* TaskViewController.swift */,
 				78073E692154015C00E11249 /* Task.storyboard */,
@@ -172,7 +187,6 @@
 		78DA1CA6215595ED0067FFD6 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				784D081D2159005400DB1ACF /* ListInteractor.swift */,
 				780AE90D2156649100F72F27 /* ListPresenter.swift */,
 				78DA1CA9215596E90067FFD6 /* ListViewController.swift */,
 				78DA1CA7215595F80067FFD6 /* List.storyboard */,
@@ -330,9 +344,11 @@
 				784D082321590FC000DB1ACF /* AuthViewController.swift in Sources */,
 				784D08252159104000DB1ACF /* AuthInteractor.swift in Sources */,
 				784D08292159138000DB1ACF /* AuthPresenter.swift in Sources */,
+				2C14985F217C659000E9F63E /* LocalNotificationsInteractor.swift in Sources */,
 				780AE90E2156649100F72F27 /* ListPresenter.swift in Sources */,
 				784D081E2159005400DB1ACF /* ListInteractor.swift in Sources */,
 				78DA1CAA215596E90067FFD6 /* ListViewController.swift in Sources */,
+				2C14D906219B62A90024D797 /* Result.swift in Sources */,
 				780AE90C2156590500F72F27 /* Router.swift in Sources */,
 				780AE906215655DF00F72F27 /* TaskPresenter.swift in Sources */,
 				2C85C9C4215BA52200417F81 /* DatePickerTextField.swift in Sources */,

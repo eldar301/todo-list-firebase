@@ -14,22 +14,25 @@ protocol ListView: class {
 
 class ListPresenter {
     
-    fileprivate let router: Router
+    private let router: Router
     
-    init(router: Router) {
+    private var hotTasks: [Task] = []
+    private var normalTasks: [Task] = []
+    
+    let listInteractor: ListInteractor
+    
+    let localNotificationsInteractor: LocalNotificationsInteractor
+    
+    init(router: Router, listInteractor: ListInteractor, localNotificationsInteractor: LocalNotificationsInteractor) {
         self.router = router
+        self.listInteractor = listInteractor
+        self.localNotificationsInteractor = localNotificationsInteractor
     }
     
     weak var view: ListView?
     
-    lazy var interactor: ListInteractor = {
-        let interactor = ListInteractor()
-        interactor.output = self
-        return interactor
-    }()
-    
     func startListening() {
-        _ = interactor.startListening()
+        _ = listInteractor.startListening()
     }
     
     func showTask(task: Task) {
@@ -44,18 +47,43 @@ class ListPresenter {
 
 extension ListPresenter: ListInteractorOutput {
     
-    func update(withResult result: Result<[Task]>) {
+    func update(withResult result: Result<[TaskStatus]>) {
         switch result {
-        case .success(let tasks):
-            var hotTasks: [Task] = []
-            var normalTasks: [Task] = []
-            
-            for task in tasks {
-                if let date = task.date, Calendar.current.isDateInToday(date) || date.timeIntervalSinceNow < 0 {
-                    hotTasks.append(task)
-                } else {
-                    normalTasks.append(task)
+        case .success(let taskStatuses):
+            for status in taskStatuses {
+                switch status {
+                case .modified(let task):
+                    if let index = hotTasks.firstIndex(where: { $0 == task }) {
+                        hotTasks.remove(at: index)
+                    } else if let index = normalTasks.firstIndex(where: { $0 == task }) {
+                        normalTasks.remove(at: index)
+                    }
+                    
+                    fallthrough
+                    
+                case .added(let task):                    
+                    if let date = task.date, Calendar.current.isDateInToday(date) || date.timeIntervalSinceNow < 0 {
+                        hotTasks.append(task)
+                    } else {
+                        normalTasks.append(task)
+                    }
+                    
+                    if task.date != nil {
+                        localNotificationsInteractor.addNotificationFor(task: task)
+                    } else {
+                        localNotificationsInteractor.removeNotificationFor(task: task)
+                    }
+                    
+                case .removed(let task):
+                    if let index = hotTasks.firstIndex(where: { $0 == task }) {
+                        hotTasks.remove(at: index)
+                    } else if let index = normalTasks.firstIndex(where: { $0 == task }) {
+                        normalTasks.remove(at: index)
+                    }
+                    
+                    localNotificationsInteractor.removeNotificationFor(task: task)
                 }
+                
             }
             
             view?.update(withHotTasks: hotTasks, withNormalTasks: normalTasks)
@@ -63,6 +91,14 @@ extension ListPresenter: ListInteractorOutput {
         case .error(let description):
             print(description)
         }
+    }
+    
+}
+
+extension ListPresenter: LocalNotificationsInteractorOutput {
+    
+    func accessNotGranted() {
+        
     }
     
 }

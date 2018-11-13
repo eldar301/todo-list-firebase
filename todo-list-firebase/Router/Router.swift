@@ -37,8 +37,14 @@ class Router {
     func showListScene() {
         let navVC = UIStoryboard(name: "List", bundle: nil).instantiateInitialViewController() as! UINavigationController
         let listVC = navVC.viewControllers[0] as! ListViewController
+        
         let router = Router(viewController: listVC)
-        let presenter = ListPresenter(router: router)
+        let listInteractor = ListInteractorDefault()
+        let localNotificationsInteractor = LocalNotificationsInteractorDefault()
+        let presenter = ListPresenter(router: router, listInteractor: listInteractor, localNotificationsInteractor: localNotificationsInteractor)
+        listInteractor.output = presenter
+        localNotificationsInteractor.output = presenter
+        
         listVC.presenter = presenter
         present(viewController: navVC, modally: true)
     }
